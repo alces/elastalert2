@@ -24,6 +24,7 @@ import elastalert.alerters.gitter
 import elastalert.alerters.googlechat
 import elastalert.alerters.httppost
 import elastalert.alerters.line
+import elastalert.alerters.niketechservicenow
 import elastalert.alerters.pagertree
 import elastalert.alerters.rocketchat
 import elastalert.alerters.servicenow
@@ -116,7 +117,8 @@ class RulesLoader(object):
         'chatwork': elastalert.alerters.chatwork.ChatworkAlerter,
         'datadog': elastalert.alerters.datadog.DatadogAlerter,
         'ses': elastalert.alerters.ses.SesAlerter,
-        'rocketchat': elastalert.alerters.rocketchat.RocketChatAlerter
+        'rocketchat': elastalert.alerters.rocketchat.RocketChatAlerter,
+        'niketechservicenow': elastalert.alerters.niketechservicenow.NiketechServiceNowAlerter
     }
 
     # A partial ordering of alert types. Relative order will be preserved in the resulting alerts list
