@@ -18,8 +18,7 @@ class NiketechServiceNowAlerter(Alerter):
         'requested_by',
         'requested_for',
         'requested_for_location',
-        'service',
-        'short_description'
+        'service'
     ])
 
     def __init__(self, rule):
@@ -64,22 +63,23 @@ class NiketechServiceNowAlerter(Alerter):
             raise EAException("ServiceNow didn't return Access Token: %s" % result)
 
         headers["Authorization"] = "Bearer " + access_token
+        short_description = self.rule.get('short_description', self.create_title(matches))
         for match in matches:
             # Parse everything into description.
-            description = str(BasicMatchString(self.rule, match))
+            detailed_description = str(BasicMatchString(self.rule, match))
 
         payload = {
             "access_key": self.rule['access_key'],
             "assignment_group": self.rule['assignment_group'],
             "contact_type": self.contact_type,
-            "detailed_description": description,
+            "detailed_description": detailed_description,
             "impact": self.impact,
             "impacted_geo": self.rule['impacted_geo'],
             "requested_by": self.rule['requested_by'],
             "requested_for": self.rule['requested_for'],
             "requested_for_location": self.rule['requested_for_location'],
             "service": self.rule['service'],
-            "short_description": self.rule['short_description'],
+            "short_description": short_description,
             "urgency": self.urgency
         }
         if self.category != None:
