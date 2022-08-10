@@ -45,7 +45,7 @@ class NiketechServiceNowAlerter(Alerter):
             "client_id": self.rule['client_id'],
             "client_secret": self.rule['client_secret']
         }
-        service_now_api_url = self.servicenow_server_url + self.service_now_api_root
+        service_now_api_url = self.servicenow_server_url + self.servicenow_api_root
         try:
             response = requests.post(
                 service_now_api_url + '/application_credentials/generate_refresh_token',
