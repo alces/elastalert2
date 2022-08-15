@@ -86,6 +86,8 @@ class NiketechServiceNowAlerter(Alerter):
             payload["category"] = self.category
         if self.subcategory != None:
             payload["subcategory"] = self.subcategory
+        if self.service_area != None:
+            payload["service_area"] = self.service_area
         try:
             response = requests.post(
                 service_now_api_url + '/incident_service_api/create_incident',
