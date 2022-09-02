@@ -29,6 +29,7 @@ class NiketechServiceNowAlerter(Alerter):
         self.impact = self.rule.get('servicenow_impact', '3')
         self.servicenow_api_root = self.rule.get('servicenow_api_root', '/api/nike2')
         self.servicenow_server_url = self.rule.get('servicenow_server_url', 'https://niketech.service-now.com')
+        self.servicenow_runbook = self.rule.get('servicenow_runbook', None)
         self.servicenow_proxy = self.rule.get('servicenow_proxy', None)
         self.subcategory = self.rule.get('subcategory', None)
         self.urgency = self.rule.get('servicenow_urgency', '3')
@@ -67,6 +68,8 @@ class NiketechServiceNowAlerter(Alerter):
         for match in matches:
             # Parse everything into description.
             detailed_description = str(BasicMatchString(self.rule, match))
+        if self.servicenow_runbook != None:
+            detailed_description += "\n\nRunbook URL: " + self.servicenow_runbook
 
         payload = {
             "access_key": self.rule['access_key'],
